@@ -175,9 +175,13 @@ void printTable() {
 }
 
 void printCycle() {
-    vector<string> path;
     string cur = steps.back().currVertex;
-
+    while (cur.back() != '-') {
+        cur.pop_back();
+    }
+    cur.pop_back();
+    
+    vector<string> path;
     while(cur != "-1") {
         path.push_back(cur);
         cur = father[cur];
