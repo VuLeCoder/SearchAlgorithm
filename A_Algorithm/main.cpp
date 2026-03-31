@@ -8,6 +8,7 @@ using namespace std;
 unordered_map<string, vector<pair<string, int>>> adj;
 unordered_map<string, string> father;
 unordered_map<string, int> weight;
+unordered_map<string, int> g;
 
 struct row{
 	string currVertex;
@@ -22,6 +23,7 @@ pair<string, string> inputEdgeList();
 bool A_Algorithm(string start, string finish);
 void printTable();
 void printCycle();
+void printCost();
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -40,6 +42,7 @@ int main() {
 
     printTable();
     printCycle();
+    printCost();
 
     return 0;
 }
@@ -89,7 +92,6 @@ bool A_Algorithm(string start, string finish) {
     row r = {"", "", "", "", "", "", tmp};
     steps.push_back(r);
 
-    unordered_map<string, int> g;
     g[start] = 0;
 
     priority_queue<pair<int, string>, vector<pair<int, string>>, greater<>> pq;
@@ -212,4 +214,9 @@ void printCycle() {
     cout << "\n";
 }
 
+void printCost() {
+    if(steps.empty()) return;
 
+    string finish = steps.back().currVertex;
+    cout << "Chi phi: " << g[finish] << "\n";
+}
